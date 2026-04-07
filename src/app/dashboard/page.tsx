@@ -260,30 +260,6 @@ export default function Dashboard() {
                </button>
             </div>
           </div>
-
-          {/* Construction Material Section */}
-          <div className="bg-white rounded-2xl shadow-sm border border-border/40 overflow-hidden">
-             <div className="p-6 border-b border-border/20">
-                <h2 className="text-lg font-extrabold text-[#1c2b3e]">Building Construction Material &amp; Equipment</h2>
-             </div>
-             <div className="p-6 overflow-x-auto custom-scrollbar">
-                <div className="flex gap-4 min-w-max">
-                   {[1,2,3,4,5,6].map((idx) => (
-                      <div key={idx} className="w-[180px] group cursor-pointer">
-                         <div className="relative aspect-square rounded-xl overflow-hidden mb-3 border border-border/40 shadow-sm group-hover:shadow-md transition-all">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img 
-                              src="/construction.png" 
-                              alt="Construction Product" 
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform" 
-                            />
-                         </div>
-                         <h4 className="text-xs font-bold text-foreground text-center line-clamp-2 px-2 group-hover:text-primary transition-colors">Industrial Material Unit {idx}</h4>
-                      </div>
-                   ))}
-                </div>
-             </div>
-          </div>
         </main>
       </div>
 
