@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Connect with verified manufacturers, suppliers, and exporters. Source industrial machinery, electronics, apparel, and more directly from the source.",
 };
 
+import { Providers } from "@/components/layout/Providers";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +29,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

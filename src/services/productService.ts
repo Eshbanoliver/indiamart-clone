@@ -1,18 +1,17 @@
 import apiClient from './apiClient';
-import { Product } from '@/types/product';
+import { Product, ApiResponse, PaginatedResponse, PaginationParams } from '@/types';
 
 /**
  * Service for fetching product listings and details.
  */
 export const productService = {
   /**
-   * Fetches the products from the marketplace.
-   * @param category (optional) - The category to filter by
-   * @returns Array of Product objects
+   * Fetches products with pagination and filtering.
+   * @param params - Pagination and filter parameters
+   * @returns Paginated response with products
    */
-  async getProducts(category?: string): Promise<Product[]> {
-    const params = category ? { category } : {};
-    const { data } = await apiClient.get<Product[]>('/products', { params });
+  async getProducts(params?: PaginationParams & { category?: string; search?: string }): Promise<PaginatedResponse<Product>> {
+    const { data } = await apiClient.get<PaginatedResponse<Product>>('/products', { params });
     return data;
   },
 
@@ -23,11 +22,31 @@ export const productService = {
    */
   async getProductById(id: string): Promise<Product | null> {
     try {
-      const { data } = await apiClient.get<Product>(`/products/${id}`);
-      return data;
+      const response = await apiClient.get<ApiResponse<Product>>(`/products/${id}`);
+      return response.data.data;
     } catch (error) {
       console.error(`Failed to fetch product with ID ${id}`, error);
       return null;
     }
+  },
+
+  /**
+   * Search products by query
+   * @param query - Search query string
+   * @param params - Additional pagination parameters
+   * @returns Paginated response with search results
+   */
+  async searchProducts(query: string, params?: PaginationParams): Promise<PaginatedResponse<Product>> {
+    return this.getProducts({ ...params, search: query });
+  },
+
+  /**
+   * Get products by category
+   * @param category - Category name or slug
+   * @param params - Additional pagination parameters
+   * @returns Paginated response with category products
+   */
+  async getProductsByCategory(category: string, params?: PaginationParams): Promise<PaginatedResponse<Product>> {
+    return this.getProducts({ ...params, category });
   },
 };

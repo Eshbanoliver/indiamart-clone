@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { env } from '@/lib/env';
 
 /**
  * Standard API Client for the application.
  * Handles base URL, common headers, and auth interceptors.
  */
 const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000/api',
+  baseURL: env.API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -32,7 +33,20 @@ apiClient.interceptors.response.use(
     if (error.response?.status === 401) {
       // Handle logout or refresh token logic here
       console.error('Session expired. Please login again.');
+      // Clear tokens
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('refresh_token');
+        // Redirect to login page
+        window.location.href = '/login';
+      }
     }
+    
+    // Log errors in development
+    if (env.IS_DEVELOPMENT) {
+      console.error('API Error:', error.response?.data || error.message);
+    }
+    
     return Promise.reject(error);
   }
 );
