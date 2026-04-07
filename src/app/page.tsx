@@ -5,7 +5,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 // import { ProductCard } from "@/components/shared/ProductCard";
 // import { InquiryForm } from "@/components/shared/InquiryForm";
-import { RequirementModal } from "@/components/shared/RequirementModal";
 import { Button } from "@/components/ui/Button";
 import { 
   Search, 
@@ -27,20 +26,7 @@ import { cn } from "@/lib/utils";
 
 
 
-
-
-
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsModalOpen(true);
-    }, 30000); // 30 seconds
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="min-h-screen bg-[#f8fafc]">
       <Navbar />
@@ -128,7 +114,6 @@ export default function Home() {
 
 
 
-
       {/* Why Choose Us */}
       <section className="py-24 bg-white relative overflow-hidden">
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-secondary/20 rounded-full -z-10 blur-[150px]" />
@@ -172,7 +157,6 @@ export default function Home() {
       </section>
 
       <Footer />
-      <RequirementModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }

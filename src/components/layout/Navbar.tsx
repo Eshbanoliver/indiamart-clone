@@ -69,7 +69,7 @@ export const Navbar = () => {
             
             <div className="h-6 w-px bg-border hidden sm:block"></div>
 
-            <Link href="/login">
+            <Link href="/login" onClick={() => console.log('Sign In button clicked')}>
               <Button variant="ghost" size="sm" className="hidden sm:flex items-center gap-2">
                 <User className="w-4 h-4" />
                 <span>Sign In</span>
