@@ -13,19 +13,13 @@ import {
   HelpCircle,
   MapPin,
   ChevronDown,
-  Bell,
   MessageCircle,
   LifeBuoy,
   Globe,
-  UserCircle,
-  ArrowRight,
-  TrendingUp,
   PackageSearch
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/lib/utils";
 
 const SIDEBAR_ITEMS = [
@@ -161,14 +155,13 @@ export default function Dashboard() {
                     {CATEGORIES.map((cat, i) => (
                       <div key={i} className="group border border-border/40 rounded-xl p-3 flex flex-col gap-4 hover:shadow-xl hover:border-primary/20 transition-all cursor-pointer">
                         <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-secondary/20">
-                           <Image src={cat.img} alt={cat.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                           {/* eslint-disable-next-line @next/next/no-img-element */}
+                           <img src={cat.img} alt={cat.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                         </div>
                         <h3 className="text-xs font-extrabold text-foreground leading-tight min-h-[32px]">{cat.title}</h3>
-                        <Link href="#" className="mt-auto">
-                           <Button variant="outline" size="sm" className="w-full text-[10px] font-black uppercase text-[#00a699] border-[#00a699]/30 hover:bg-[#00a699] hover:text-white group-hover:border-[#00a699]">
-                             Get Quotes
-                           </Button>
-                        </Link>
+                        <Button variant="outline" size="sm" className="w-full text-[10px] font-black uppercase text-[#00a699] border-[#00a699]/30 hover:bg-[#00a699] hover:text-white group-hover:border-[#00a699]">
+                          Get Quotes
+                        </Button>
                       </div>
                     ))}
                   </div>
@@ -177,7 +170,7 @@ export default function Dashboard() {
 
             {/* Complete Sign-In Card */}
             <div className="bg-white rounded-2xl shadow-sm border border-border/40 p-8 flex flex-col items-center text-center justify-center space-y-6 relative overflow-hidden group">
-               <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-0" />
+               <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full" />
                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 shadow-inner">
                   <BadgeCheck className="w-8 h-8" />
                </div>
@@ -199,18 +192,18 @@ export default function Dashboard() {
           {/* Construction Material Section */}
           <div className="bg-white rounded-2xl shadow-sm border border-border/40 overflow-hidden">
              <div className="p-6 border-b border-border/20">
-                <h2 className="text-lg font-extrabold text-[#1c2b3e]">Building Construction Material & Equipment</h2>
+                <h2 className="text-lg font-extrabold text-[#1c2b3e]">Building Construction Material &amp; Equipment</h2>
              </div>
              <div className="p-6 overflow-x-auto custom-scrollbar">
                 <div className="flex gap-4 min-w-max">
                    {[1,2,3,4,5,6].map((idx) => (
                       <div key={idx} className="w-[180px] group cursor-pointer">
                          <div className="relative aspect-square rounded-xl overflow-hidden mb-3 border border-border/40 shadow-sm group-hover:shadow-md transition-all">
-                            <Image 
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img 
                               src="/construction.png" 
                               alt="Construction Product" 
-                              fill 
-                              className="object-cover group-hover:scale-105 transition-transform" 
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform" 
                             />
                          </div>
                          <h4 className="text-xs font-bold text-foreground text-center line-clamp-2 px-2 group-hover:text-primary transition-colors">Industrial Material Unit {idx}</h4>
@@ -223,7 +216,7 @@ export default function Dashboard() {
       </div>
 
       {/* Floating Track Order Button */}
-      <div className="fixed bottom-10 right-10 z-[100]">
+      <div className="fixed bottom-10 right-10 z-40">
          <Button className="h-14 px-8 rounded-full bg-[#3b235d] shadow-2xl shadow-[#3b235d]/40 gap-3 border-2 border-white/20 hover:scale-105 transition-transform group">
             <Truck className="w-6 h-6 animate-bounce" />
             <span className="text-lg font-black tracking-tight">Track Order</span>

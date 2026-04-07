@@ -36,7 +36,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsModalOpen(true);
-    }, 12000); // 12 seconds
+    }, 30000); // 30 seconds
 
     return () => clearTimeout(timer);
   }, []);
