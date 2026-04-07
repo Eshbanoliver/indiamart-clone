@@ -1,6 +1,6 @@
 import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 import { authService, categoryService, supplierService } from '@/services';
-import { Category, Supplier, User, LoginCredentials, RegisterData, AuthResponse } from '@/types';
+import { Category, Supplier, User } from '@/types';
 
 export const authQueryKeys = {
   currentUser: ['auth', 'currentUser'] as const,
@@ -19,13 +19,12 @@ export const supplierQueryKeys = {
 /**
  * Hook for getting current authenticated user
  */
-export function useCurrentUser(options?: UseQueryOptions<User | null>) {
+export function useAuth() {
   return useQuery({
     queryKey: authQueryKeys.currentUser,
     queryFn: () => authService.getCurrentUser(),
     staleTime: 5 * 60 * 1000, // 5 minutes
     retry: false,
-    ...options,
   });
 }
 

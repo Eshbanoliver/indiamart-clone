@@ -1,4 +1,4 @@
-import { UseQueryOptions, UseMutationOptions, useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 import { productService } from '@/services/productService';
 import { Product, PaginatedResponse, PaginationParams } from '@/types';
 
@@ -59,18 +59,4 @@ export function useCategoryProducts(category: string, params?: PaginationParams,
     staleTime: 60 * 1000, // 1 minute
     ...options,
   });
-}
-
-/**
- * Hook for invalidating product queries (useful after mutations)
- */
-export function useInvalidateProducts() {
-  const queryClient = useQueryClient();
-  
-  return {
-    invalidateAll: () => queryClient.invalidateQueries({ queryKey: queryKeys.products }),
-    invalidateProduct: (id: string) => queryClient.invalidateQueries({ queryKey: queryKeys.product(id) }),
-    invalidateSearch: (query: string) => queryClient.invalidateQueries({ queryKey: queryKeys.searchProducts(query) }),
-    invalidateCategory: (category: string) => queryClient.invalidateQueries({ queryKey: queryKeys.categoryProducts(category) }),
-  };
 }

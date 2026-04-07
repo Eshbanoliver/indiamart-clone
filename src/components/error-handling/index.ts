@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
 import { ErrorBoundary } from './ErrorBoundary';
-import { AsyncErrorBoundary } from './AsyncErrorBoundary';
+import { AsyncErrorBoundary, DefaultAsyncErrorFallback } from './AsyncErrorBoundary';
 
-export { ErrorBoundary, AsyncErrorBoundary };
+export { ErrorBoundary, AsyncErrorBoundary, DefaultAsyncErrorFallback };

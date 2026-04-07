@@ -227,7 +227,7 @@ export const handlers = [
 
   // Handler for POST /api/auth/login
   http.post('*/api/auth/login', async ({ request }) => {
-    const { email, password } = await request.json() as any;
+    const { email, password } = await request.json() as { email: string; password: string };
     
     // Mock authentication logic
     if (email === 'test@example.com' && password === 'password') {
@@ -261,7 +261,7 @@ export const handlers = [
 
   // Handler for POST /api/auth/register
   http.post('*/api/auth/register', async ({ request }) => {
-    const userData = await request.json() as any;
+    const userData = await request.json() as { name: string; email: string; phone: string; password: string; role: string; company?: string };
     
     const mockUser: User = {
       id: Date.now().toString(),

@@ -1,5 +1,5 @@
 // Common API response types
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   data: T;
   message?: string;
   success: boolean;
@@ -35,7 +35,7 @@ export interface Product {
   category: string;
   images: string[];
   supplier: Supplier;
-  specifications: Record<string, any>;
+  specifications: Record<string, unknown>;
   moq: number; // Minimum Order Quantity
   leadTime: number; // in days
   rating: number;

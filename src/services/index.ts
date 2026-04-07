@@ -45,7 +45,7 @@ export const authService = {
     try {
       const response = await apiClient.get<ApiResponse<User>>('/auth/me');
       return response.data.data;
-    } catch (error) {
+    } catch {
       return null;
     }
   },
@@ -73,7 +73,7 @@ export const categoryService = {
     try {
       const response = await apiClient.get<ApiResponse<Category>>(`/categories/${slugOrId}`);
       return response.data.data;
-    } catch (error) {
+    } catch {
       return null;
     }
   },
@@ -101,7 +101,7 @@ export const supplierService = {
     try {
       const response = await apiClient.get<ApiResponse<Supplier>>(`/suppliers/${id}`);
       return response.data.data;
-    } catch (error) {
+    } catch {
       return null;
     }
   },

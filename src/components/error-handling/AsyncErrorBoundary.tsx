@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 import { Alert, Button } from '@/components/ui';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 interface AsyncErrorBoundaryProps {
   children: ReactNode;
@@ -9,12 +8,6 @@ interface AsyncErrorBoundaryProps {
 }
 
 export function AsyncErrorBoundary({ children, fallback }: AsyncErrorBoundaryProps) {
-  const { reset } = useQueryErrorResetBoundary();
-
-  if (fallback) {
-    return <>{children}</>;
-  }
-
   return <>{children}</>;
 }
 

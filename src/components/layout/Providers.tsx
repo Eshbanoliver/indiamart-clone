@@ -15,9 +15,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
     defaultOptions: {
       queries: {
         staleTime: 60 * 1000, // 1 minute
-        retry: (failureCount, error: any) => {
+        retry: (failureCount, error: unknown) => {
           // Don't retry on 4xx errors
-          if (error?.response?.status >= 400 && error?.response?.status < 500) {
+          const errorResponse = (error as { response?: { status: number } }).response;
+          if (errorResponse && errorResponse.status >= 400 && errorResponse.status < 500) {
             return false;
           }
           // Retry up to 2 times for other errors
