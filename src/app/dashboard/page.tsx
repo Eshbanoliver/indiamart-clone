@@ -31,7 +31,7 @@ import { cn } from "@/lib/utils";
 
 const SIDEBAR_ITEMS = [
   { icon: LayoutDashboard, label: "Dashboard", active: true },
-  { icon: User, label: "My Profile" },
+  { icon: User, label: "My Profile", href: "/profile" },
   { icon: MessageSquare, label: "Messages" },
   { icon: Search, label: "Know Your Seller", badge: "NEW" },
   { icon: ShieldCheck, label: "Payment Protection" },
@@ -172,7 +172,7 @@ export default function Dashboard() {
             {SIDEBAR_ITEMS.map((item, i) => (
               <Link 
                 key={i} 
-                href="#" 
+                href={item.href || "#"}
                 className={cn(
                   "flex items-center justify-between px-6 py-3 transition-colors group",
                   item.active ? "bg-[#f1f3f6] text-[#3b235d]" : "text-foreground/70 hover:bg-secondary/50"
